@@ -1,0 +1,6 @@
+[submodule "modules/myql"]
+  path = modules/mysql
+  url  = git://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "modules/java"]
+  path = modules/java
+  url  = git://github.com/puppetlabs/puppetlabs-java.git
