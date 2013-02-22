@@ -15,7 +15,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <maven.tomcat.home>${user.home}/apache-tomcat-7.0.37/</maven.tomcat.home>
+        <maven.tomcat.home>/var/lib/tomcat7/</maven.tomcat.home>
       </properties>
     </profile>
   </profiles>
