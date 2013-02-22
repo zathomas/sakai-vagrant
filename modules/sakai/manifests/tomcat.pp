@@ -26,6 +26,13 @@ class sakai::tomcat {
     require => Package["tomcat7"],
   }
 
+  file { '/var/lib/tomcat7/webapps':
+    ensure => directory,
+    owner  => "tomcat7",
+    group  => "vagrant",
+    require => Package["tomcat7"],
+  }
+
   file { '/var/lib/tomcat7/sakai/sakai.properties':
     ensure  => file,
     owner   => "tomcat7",
