@@ -75,6 +75,16 @@ class sakai::tomcat {
     require => Package["tomcat7"],
   }
 
+  file { '/usr/share/tomcat7/lib/commons-dbcp.jar':
+    ensure  => absent,
+    require => Package["tomcat7"],
+  }
+
+  file { '/usr/share/tomcat7/lib/commons-pool.jar':
+    ensure  => absent,
+    require => Package["tomcat7"],
+  }
+
   service { 'tomcat7':
     ensure     => stopped,
     enable     => false,
@@ -83,7 +93,9 @@ class sakai::tomcat {
     require    => File[
       "/var/lib/tomcat7/sakai/sakai.properties",
       "/usr/share/tomcat7/bin/setenv.sh",
-      "/var/lib/tomcat7/conf/catalina.properties"
+      "/var/lib/tomcat7/conf/catalina.properties",
+      "/usr/share/tomcat7/lib/commons-dbcp.jar",
+      "/usr/share/tomcat7/lib/commons-pool.jar"
     ],
   }
 }
