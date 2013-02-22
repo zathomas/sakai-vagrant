@@ -10,19 +10,24 @@ class sakai::sakai_dev {
   package { 'vim':
     ensure => present,
   }
-
-  download_file { "apache-maven-3.0.4-bin.tar.gz":
-    site => "http://mirrors.ibiblio.org/apache/maven/maven-3/3.0.4/binaries",
-    cwd => "/home/vagrant",
-    creates => "/home/vagrant/$name",
-    user => "vagrant",
+  
+  file { "/root/.aptitude": 
+    ensure => directory,
   }
 
-  exec { '/bin/tar xzf /home/vagrant/apache-maven-3.0.4-bin.tar.gz':
-    unless => '/usr/bin/test -d /home/vagrant/apache-maven-3.0.4',
-    cwd    => '/home/vagrant',
-    user   => "vagrant",
-    require => Download_file["apache-maven-3.0.4-bin.tar.gz"],
+  file { "/root/.aptitude/config":
+    ensure  => file,
+    content => 'APT::Install-Recommends "0";',
+    require => File["/root/.aptitude"],
+  }
+  
+  # we use aptitude for the provider because unlike the default provider (apt)
+  # we can ask aptitude not to install the 'recommended' packages for maven,
+  # which amounts to a couple hundred MiB of stuff we don't need.
+  package { "maven":
+    ensure   => present,
+    provider => aptitude,
+    require  => File["/root/.aptitude/config"],
   }
 
   file { "/etc/profile.d/maven.sh":

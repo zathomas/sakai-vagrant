@@ -3,26 +3,12 @@ class sakai::tomcat {
     ensure => present,
   }
 
-  service { 'tomcat7':
-    ensure     => running,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-    require    => Package["tomcat7"],
-  }
-
-  file { '/var/lib/tomcat7':
-    ensure => directory,
-    owner => "tomcat7",
-    group => "vagrant",
-    mode  => 771,
-  }
-
   file { '/var/lib/tomcat7/shared/lib':
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
     mode   => 771,
+    require => Package["tomcat7"],
   }
 
   file { '/var/lib/tomcat7/common/lib':
@@ -30,12 +16,14 @@ class sakai::tomcat {
     owner  => "tomcat7",
     group  => "vagrant",
     mode   => 771,
+    require => Package["tomcat7"],
   }
 
   file { '/var/lib/tomcat7/sakai':
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
+    require => Package["tomcat7"],
   }
 
   file { '/var/lib/tomcat7/sakai/sakai.properties':
@@ -44,5 +32,33 @@ class sakai::tomcat {
     group   => "vagrant",
     require => File["/var/lib/tomcat7/sakai"],
     source  => "puppet:///files/sakai.properties",
+  }
+
+  file { '/usr/share/tomcat7/bin/setenv.sh':
+    ensure  => file,
+    owner   => "tomcat7",
+    group   => "vagrant",
+    source  => "puppet:///files/setenv.sh",
+    require => Package["tomcat7"],
+  }
+
+  file { '/var/lib/tomcat7/conf/catalina.properties':
+    ensure  => file,
+    owner   => "tomcat7",
+    group   => "vagrant",
+    source  => "puppet:///files/catalina.properties",
+    require => Package["tomcat7"],
+  }
+
+  service { 'tomcat7':
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => File[
+      "/var/lib/tomcat7/sakai/sakai.properties",
+      "/usr/share/tomcat7/bin/setenv.sh",
+      "/var/lib/tomcat7/conf/catalina.properties"
+    ],
   }
 }
