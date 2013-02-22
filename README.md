@@ -58,6 +58,8 @@ Once the VM is running, it’s ready to build and deploy Sakai. Assuming you’v
 
 It uses `/vagrant/maven-repo` as the local Maven repository. The reason for this is that you should be able to blow away the VM at any time without having to download everything again (All 864MiB of it). That’s the same reason we checkout the source code to `/vagrant/sakai-src`.
 
+Once Tomcat is running, you can access Sakai on the _host_ machine at http://localhost:8888/portal This works because the VM is configured to forward port 8888 on the host machine to port 8080 on the VM. Likewise, you can attach a debugger to `localhost:9999` because port 9999 is being forwarded to the debugger listener in Tomcat on the VM.
+
 ## Etc.
 I used the tomcat7 package for Ubuntu, which breaks Sakai out of the box, but I adjusted the setup so as to un-break it. Here are the locations you’ll want to know about:
 
