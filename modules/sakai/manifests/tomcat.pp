@@ -7,7 +7,7 @@ class sakai::tomcat {
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
-    mode   => 771,
+    mode   => 775,
     require => Package["tomcat7"],
   }
 
@@ -15,7 +15,15 @@ class sakai::tomcat {
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
-    mode   => 771,
+    mode   => 775,
+    require => Package["tomcat7"],
+  }
+
+  file { '/var/lib/tomcat7/server/lib':
+    ensure => directory,
+    owner  => "tomcat7",
+    group  => "vagrant",
+    mode   => 775,
     require => Package["tomcat7"],
   }
 
@@ -23,6 +31,7 @@ class sakai::tomcat {
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
+    mode   => 775,
     require => Package["tomcat7"],
   }
 
@@ -30,6 +39,15 @@ class sakai::tomcat {
     ensure => directory,
     owner  => "tomcat7",
     group  => "vagrant",
+    mode   => 775,
+    require => Package["tomcat7"],
+  }
+
+  file { '/var/lib/tomcat7/components':
+    ensure => directory,
+    owner  => "tomcat7",
+    group  => "vagrant",
+    mode   => 775,
     require => Package["tomcat7"],
   }
 
@@ -58,8 +76,8 @@ class sakai::tomcat {
   }
 
   service { 'tomcat7':
-    ensure     => running,
-    enable     => true,
+    ensure     => stopped,
+    enable     => false,
     hasstatus  => true,
     hasrestart => true,
     require    => File[
