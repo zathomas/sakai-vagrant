@@ -3,6 +3,10 @@ class sakai::zsh {
     ensure => present,
   }
   
+  package { "zsh":
+    ensure => present,
+  }
+  
   user { "vagrant":
     ensure => present,
     shell  => "/bin/zsh",
