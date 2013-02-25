@@ -10,7 +10,7 @@
     git submodule update --init
     vagrant up
 
-Vagrant is a tool for quickly setting up virtual machines for developers. Vagrant has a couple of dependencies: these instructions assume you have ruby, rubygems, git, and the latest version of Oracle’s [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Note: depending on where rubygems is installing things for you, you may need to use `sudo` when running `gem install`, e.g. `sudo gem install vagrant`
+[Vagrant](http://vagrantup.com) is a tool for quickly setting up virtual machines for developers. Vagrant has a couple of dependencies: these instructions assume you have ruby, rubygems, git, and the latest version of Oracle’s [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Note: depending on where rubygems is installing things for you, you may need to use `sudo` when running `gem install`, e.g. `sudo gem install vagrant`
 
 The very first time you start this VM, it’s going to download a base Ubuntu server image, install the necessary tools and then checkout the Sakai source code. Once it’s underway, this is a good time to go get lunch. The source code is close to 500MiB, and Subversion takes its sweet time. You can check on how it's doing from time to time by opening a second terminal and measuring the size of the source directory, like this: `du -hs sakai-vagrant/sakai-src`
 
@@ -27,6 +27,8 @@ The system you’ll end up with is very close to what’s described in the [deve
 * Tomcat for the runtime container
 * MySQL for the database backend
 * vim, because it’s good to have an editor handy
+* git because you can get a lot of software that way
+* zsh and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), because that’s good shell stuff
 * Everything else that usually comes with an Ubuntu 12.04 server
 
 One thing that I _didn’t_ bother to include is Eclipse and the extras that you’d use with it, because Vagrant creates headless machines, and any IDE that you decide to use will still be run from your host machine.
@@ -43,7 +45,7 @@ You can make any tweaks you want to the config files, then run this command to r
 
     vagrant reload
 
-Vagrant (and puppet, its little helper) is smart enough not to re-do anything that doesn’t need it, so `vagrant reload` is much faster than the initial setup. 
+Vagrant (and [puppet](https://puppetlabs.com/puppet/what-is-puppet/), its little helper) is smart enough not to re-do anything that doesn’t need it, so `vagrant reload` is much faster than the initial setup.
 
 Vagrant creates a fileshare of `sakai-vagrant` for use by the virtual machine, where it’s mounted at `/vagrant`. As mentioned above, your Sakai source code will be in `sakai-vagrant/sakai-src`, which means when you’re logged into the VM, you can get to the source code via `/vagrant/sakai-src`.
 
