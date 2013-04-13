@@ -10,9 +10,11 @@
     git submodule update --init
     vagrant up
 
-[Vagrant](http://vagrantup.com) is a tool for quickly setting up virtual machines for developers. Vagrant has a couple of dependencies: these instructions assume you have ruby, rubygems, git, [Vagrant](http://downloads.vagrantup.com/), and the latest version of Oracle’s [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Note: depending on where rubygems is installing things for you, you may need to use `sudo` when running `gem install`, e.g. `sudo gem install vagrant`
+[Vagrant](http://vagrantup.com) is a tool for quickly setting up virtual machines for developers. Vagrant has a couple of dependencies: these instructions assume you have ruby, git, [Vagrant itself](http://downloads.vagrantup.com/), and the latest version of Oracle’s [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 The very first time you start this VM, it’s going to download a base Ubuntu server image, install the necessary tools and then checkout the Sakai source code. Once it’s underway, this is a good time to go get lunch. The source code is close to 500MiB, and Subversion takes its sweet time. You can check on how it's doing from time to time by opening a second terminal and measuring the size of the source directory, like this: `du -hs sakai-vagrant/sakai-src`
+
+> If you already have the Sakai sources and a populated maven local repository, you can keep Vagrant from having to get them itself by copying (or linking) the source code to `sakai-vagrant/sakai-src` and the maven repository to `sakai-vagrant/maven-repo`.
 
 When it’s finished, you can connect to the new VM like this:
 
