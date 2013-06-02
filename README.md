@@ -60,8 +60,6 @@ Once the VM is running, it’s ready to build and deploy Sakai. Assuming you’v
     # watch the log on startup
     tail -f /var/lib/tomcat7/logs/catalina.out
 
->ALERT: I have been getting test failures with the 2.9.1 source code. If that’s your experience too, you may need to disable the tests in order to get the build to finish. `mvn clean install sakai:deploy -Dmaven.test.skip=true`.
-
 It uses `/vagrant/maven-repo` as the local Maven repository. The reason for this is that you should be able to blow away the VM at any time without having to download everything again (All 864MiB of it). That’s the same reason we checkout the source code to `/vagrant/sakai-src`.
 
 Once Tomcat is running, you can access Sakai on the _host_ machine at http://localhost:8888/portal This works because the VM is configured to forward port 8888 on the host machine to port 8080 on the VM. Likewise, you can attach a debugger to `localhost:9999` because port 9999 is being forwarded to the debugger listener in Tomcat on the VM.
