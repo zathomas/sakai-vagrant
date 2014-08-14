@@ -31,7 +31,7 @@ The system you’ll end up with is very close to what’s described in the https
 * vim, because it’s good to have an editor handy
 * git because you can get a lot of software that way
 * zsh and https://github.com/robbyrussell/oh-my-zsh[oh-my-zsh], because that’s good shell stuff
-* Everything else that usually comes with an Ubuntu 12.04 server
+* Everything else that usually comes with an Ubuntu 14.04 LTS server
 
 One thing that I _didn’t_ bother to include is Eclipse and the extras that you’d use with it, because Vagrant creates headless machines, and any IDE that you decide to use will still be run from your host machine.
 

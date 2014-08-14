@@ -1,10 +1,12 @@
 class sakai::mysql {
   class { 'mysql::server':
-    config_hash => { 'root_password' => 'foo' }
+    root_password => 'foo'
   }
 
-  class { 'mysql::java': }
-
+  class { 'mysql::bindings':
+    java_enable => true
+  }
+  
   mysql::db { 'sakai':
     user     => 'sakai',
     password => 'ironchef',

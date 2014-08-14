@@ -4,17 +4,19 @@
 Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at vagrantup.com.
 
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "base"
   # A little configuration for VirtualBox. More memory than the default.
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 1024]
   end
 
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  # Every Vagrant virtual environment requires a box to build off of.
+  # Use latest 32-bit Ubuntu from vagrantcloud.com by default
+  config.vm.box = "ubuntu/trusty32"
 
+  # To specify a URL or file path of a downloaded box, use 'config.vm.box' instead
+  #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  #config.vm.box_url = "file:///tmp/vagrant-boxes/ubuntu-trusty32.box"
+  
   # Assign a hostname to the vm
   config.vm.hostname = "sakai.local"
 
